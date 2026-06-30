@@ -65,8 +65,7 @@ def bypass(url: str) -> None:
     table = '"api_keys"'
     # or, equivalently,
     #table = "`api_keys`"
-    #table = "[api_keys]"
-
+    
     outcome = (call(url,
             "db_query", 
             sql=f"SELECT service, key_name, key_value FROM {table}"))
